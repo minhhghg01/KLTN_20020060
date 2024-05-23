@@ -33,7 +33,7 @@ const TeacherHomePage = () => {
                 <Grid container spacing={3}>
                     <Grid item xs={12} md={3} lg={3}>
                         <StyledPaper>
-                            <img src={Students} alt="Students" />
+                            <img src={Students} alt="Students" width="64" height="64" />
                             <Title>
                                 Số học sinh trong lớp
                             </Title>

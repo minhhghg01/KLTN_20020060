@@ -13,7 +13,7 @@ const teacherRegister = async (req, res) => {
         const existingTeacherByEmail = await Teacher.findOne({ email });
 
         if (existingTeacherByEmail) {
-            res.send({ message: 'Email already exists' });
+            res.send({ message: 'Email đã tồn tại' });
         }
         else {
             let result = await teacher.save();
@@ -38,10 +38,10 @@ const teacherLogIn = async (req, res) => {
                 teacher.password = undefined;
                 res.send(teacher);
             } else {
-                res.send({ message: "Invalid password" });
+                res.send({ message: "Mật khẩu không hợp lệ" });
             }
         } else {
-            res.send({ message: "Teacher not found" });
+            res.send({ message: "Không tìm thấy giáo viên" });
         }
     } catch (err) {
         res.status(500).json(err);
@@ -59,7 +59,7 @@ const getTeachers = async (req, res) => {
             });
             res.send(modifiedTeachers);
         } else {
-            res.send({ message: "No teachers found" });
+            res.send({ message: "Không tìm thấy giáo viên nào" });
         }
     } catch (err) {
         res.status(500).json(err);
@@ -77,7 +77,7 @@ const getTeacherDetail = async (req, res) => {
             res.send(teacher);
         }
         else {
-            res.send({ message: "No teacher found" });
+            res.send({ message: "Không tìm thấy giáo viên nào" });
         }
     } catch (err) {
         res.status(500).json(err);
@@ -123,7 +123,7 @@ const deleteTeachers = async (req, res) => {
         const deletedCount = deletionResult.deletedCount || 0;
 
         if (deletedCount === 0) {
-            res.send({ message: "No teachers found to delete" });
+            res.send({ message: "Không tìm thấy giáo viên nào để xóa" });
             return;
         }
 
@@ -147,7 +147,7 @@ const deleteTeachersByClass = async (req, res) => {
         const deletedCount = deletionResult.deletedCount || 0;
 
         if (deletedCount === 0) {
-            res.send({ message: "No teachers found to delete" });
+            res.send({ message: "Không tìm thấy giáo viên nào để xóa" });
             return;
         }
 
@@ -171,7 +171,7 @@ const teacherAttendance = async (req, res) => {
         const teacher = await Teacher.findById(req.params.id);
 
         if (!teacher) {
-            return res.send({ message: 'Teacher not found' });
+            return res.send({ message: 'Không tìm thấy giáo viên' });
         }
 
         const existingAttendance = teacher.attendance.find(
@@ -191,6 +191,10 @@ const teacherAttendance = async (req, res) => {
         res.status(500).json(error)
     }
 };
+
+const teacherClassName = async (req, res) => {
+
+}
 
 module.exports = {
     teacherRegister,

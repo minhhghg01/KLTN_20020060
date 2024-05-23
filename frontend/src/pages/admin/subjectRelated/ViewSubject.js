@@ -156,7 +156,7 @@ const ViewSubject = () => {
           Mã môn học : {subjectDetails && subjectDetails.subCode}
         </Typography>
         <Typography variant="h6" gutterBottom>
-          Môn học kỳ : {subjectDetails && subjectDetails.sessions}
+          Số buổi học : {subjectDetails && subjectDetails.sessions}
         </Typography>
         <Typography variant="h6" gutterBottom>
           Số học viên: {numberOfStudents}

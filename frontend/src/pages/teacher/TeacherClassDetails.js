@@ -150,18 +150,18 @@ const TeacherClassDetails = () => {
             ) : (
                 <>
                     <Typography variant="h4" align="center" gutterBottom>
-                        Class Details
+                        Thông tin lớp 
                     </Typography>
                     {getresponse ? (
                         <>
                             <Box sx={{ display: 'flex', justifyContent: 'flex-end', marginTop: '16px' }}>
-                                No Students Found
+                                Không tìm thấy học viên
                             </Box>
                         </>
                     ) : (
                         <Paper sx={{ width: '100%', overflow: 'hidden' }}>
                             <Typography variant="h5" gutterBottom>
-                                Students List:
+                                Danh sách học viên:
                             </Typography>
 
                             {Array.isArray(sclassStudents) && sclassStudents.length > 0 &&

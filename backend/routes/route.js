@@ -33,7 +33,7 @@ router.post('/login', login);
 
 // Admin
 router.post('/AdminReg', adminRegister);
-router.post('/AdminLogin', adminLogIn);
+// router.post('/AdminLogin');
 
 router.get("/Admin/:id", getAdminDetail)
 // router.delete("/Admin/:id", deleteAdmin)

@@ -1,5 +1,6 @@
 const question = require("../models/questionSchema.js");
 
+// tạo câu hỏi
 const questionCreate = async (req, res) => {
   const questions = [
     {
@@ -114,19 +115,17 @@ const questionCreate = async (req, res) => {
     }
   ]
   
-
-  //   const { content, options, option_correct } = req.body;
-
+// thêm các câu hỏi phía trên vào db
   for (let i = 0; i < questions.length; i++) {
     const content = questions[i].content;
     const options = questions[i].options;
     const option_correct = questions[i].option_correct;
     await question.create({ content, options, option_correct });
   }
-  //   await question.create({content, options, option_correct});
   return res.send({ message: "ok", success: true });
 };
 
+// chỉnh sửa lại câu hỏi theo đúng định dạng db
 const questionUpdate = async (req, res) => {
   const questions = await question.find();
   for (let i = 30; i < questions.length; i++) {

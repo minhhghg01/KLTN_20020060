@@ -14,7 +14,7 @@ const studentRegister = async (req, res) => {
         });
 
         if (existingStudent) {
-            res.send({ message: 'Roll Number already exists' });
+            res.send({ message: 'Mã học viên đã tồn tại' });
         }
         else {
             const student = new Student({
@@ -46,10 +46,10 @@ const studentLogIn = async (req, res) => {
                 student.attendance = undefined;
                 res.send(student);
             } else {
-                res.send({ message: "Invalid password" });
+                res.send({ message: "Mật khẩu không hợp lệ" });
             }
         } else {
-            res.send({ message: "Student not found" });
+            res.send({ message: "Không tìm thấy học viên" });
         }
     } catch (err) {
         res.status(500).json(err);
@@ -65,7 +65,7 @@ const getStudents = async (req, res) => {
             });
             res.send(modifiedStudents);
         } else {
-            res.send({ message: "No students found" });
+            res.send({ message: "Không tìm thấy học viên" });
         }
     } catch (err) {
         res.status(500).json(err);
@@ -86,7 +86,7 @@ const getStudentDetail = async (req, res) => {
             res.send({student, subject});
         }
         else {
-            res.send({ message: "No student found" });
+            res.send({ message: "Không tìm thấy học viên nào" });
         }
     } catch (err) {
         res.status(500).json(err);
@@ -106,7 +106,7 @@ const deleteStudents = async (req, res) => {
     try {
         const result = await Student.deleteMany({ school: req.params.id })
         if (result.deletedCount === 0) {
-            res.send({ message: "No students found to delete" })
+            res.send({ message: "Không tìm thấy học viên nào để xóa" })
         } else {
             res.send(result)
         }
@@ -119,7 +119,7 @@ const deleteStudentsByClass = async (req, res) => {
     try {
         const result = await Student.deleteMany({ sclassName: req.params.id })
         if (result.deletedCount === 0) {
-            res.send({ message: "No students found to delete" })
+            res.send({ message: "Không tìm thấy học viên nào để xóa" })
         } else {
             res.send(result)
         }
@@ -152,7 +152,7 @@ const updateExamResult = async (req, res) => {
         const student = await Student.findById(req.params.id);
 
         if (!student) {
-            return res.send({ message: 'Student not found' });
+            return res.send({ message: 'Không tìm thấy học viên' });
         }
 
         const existingResult = student.examResult.find(
@@ -179,7 +179,7 @@ const studentAttendance = async (req, res) => {
         const student = await Student.findById(req.params.id);
 
         if (!student) {
-            return res.send({ message: 'Student not found' });
+            return res.send({ message: 'Không tìm thấy học viên' });
         }
 
         const subject = await Subject.findById(subName);
@@ -193,7 +193,6 @@ const studentAttendance = async (req, res) => {
         if (existingAttendance) {
             existingAttendance.status = status;
         } else {
-            // Check if the student has already attended the maximum number of sessions
             const attendedSessions = student.attendance.filter(
                 (a) => a.subName.toString() === subName
             ).length;

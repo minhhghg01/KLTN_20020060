@@ -47,7 +47,7 @@ const TeacherDetails = () => {
                                 Tên môn học: {teacherDetails?.teachSubject?.subName}
                             </Typography>
                             <Typography variant="h6" gutterBottom>
-                                Môn học kỳ: {teacherDetails?.teachSubject?.sessions}
+                                Số buổi dạy: {teacherDetails?.teachSubject?.sessions}
                             </Typography>
                         </>
                     ) : (

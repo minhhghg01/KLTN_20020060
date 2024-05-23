@@ -93,37 +93,7 @@ const LoginPage = ({ role }) => {
                             Xin chào! Vui lòng nhập thông tin của bạn
                         </Typography>
                         <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 2 }}>
-                            {role === "Student" ? (
-                                <>
-                                    <TextField
-                                        margin="normal"
-                                        required
-                                        fullWidth
-                                        id="rollNumber"
-                                        label="Enter your Roll Number"
-                                        name="rollNumber"
-                                        autoComplete="off"
-                                        type="number"
-                                        autoFocus
-                                        error={rollNumberError}
-                                        helperText={rollNumberError && 'Roll Number is required'}
-                                        onChange={handleInputChange}
-                                    />
-                                    <TextField
-                                        margin="normal"
-                                        required
-                                        fullWidth
-                                        id="studentName"
-                                        label="Enter your name"
-                                        name="studentName"
-                                        autoComplete="name"
-                                        autoFocus
-                                        error={studentNameError}
-                                        helperText={studentNameError && 'Name is required'}
-                                        onChange={handleInputChange}
-                                    />
-                                </>
-                            ) : (
+                            {(
                                 <TextField
                                     margin="normal"
                                     required
@@ -186,7 +156,7 @@ const LoginPage = ({ role }) => {
                              {role === "Admin" &&
                                 <Grid container>
                                     <Grid>
-                                        Bạn chưa có tài khoản?
+                                        Bạn chưa có tài khoản Admin?
                                     </Grid>
                                     <Grid item sx={{ ml: 2 }}>
                                         <StyledLink to="/Adminregister">
