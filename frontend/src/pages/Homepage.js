@@ -4,6 +4,7 @@ import { Container, Grid, Box, Button } from "@mui/material";
 import styled from "styled-components";
 import Students from "../assets/students.png";
 import { LightPurpleButton } from "../components/buttonStyles";
+import { Margin } from "@mui/icons-material";
 
 const Homepage = () => {
   return (
@@ -76,7 +77,7 @@ const StyledTitle = styled.h1`
   font-size: 3rem;
   color: #252525;
   justify-content: center;
-  font-family: "Comic Sans MS";
+  // font-family: "Comic Sans MS";
   font-weight: bold;
   padding-top: 0;
   letter-spacing: normal;

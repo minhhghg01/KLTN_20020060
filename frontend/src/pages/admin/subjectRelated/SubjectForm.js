@@ -119,7 +119,7 @@ const SubjectForm = () => {
                         <Grid item xs={4}>
                             <TextField
                                 fullWidth
-                                label="Học kỳ"
+                                label="Số buổi học"
                                 variant="outlined"
                                 type="number"
                                 inputProps={{ min: 0 }}
