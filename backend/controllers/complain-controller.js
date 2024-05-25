@@ -15,12 +15,16 @@ const complainCreate = async (req, res) => {
 
 const complainList = async (req, res) => {
   try {
-    let complains = await Complain.find({ school: req.params.id }).populate(
-      "user",
-      "name"
-    );
+    let school = req.params.id;
+    let complains = await Complain.find().populate("user");
+    let result = complains.map((complain) => {
+      if (complain.user.school == school) {
+        return complain;
+      }
+    });
+
     if (complains.length > 0) {
-      res.send(complains);
+      res.send(result);
     } else {
       res.send({ message: "Không tìm thấy phàn nàn" });
     }
