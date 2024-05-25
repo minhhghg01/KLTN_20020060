@@ -26,7 +26,11 @@ const TableTemplate = ({ buttonHaver: ButtonHaver, columns, rows }) => {
                   {column.label}
                 </StyledTableCell>
               ))}
-              <StyledTableCell align="center">Hành động</StyledTableCell>
+              {/* {ButtonHaver && ( */}
+              <StyledTableCell align="center">
+                {ButtonHaver && "Hành động"}
+              </StyledTableCell>
+              {/* )} */}
             </StyledTableRow>
           </TableHead>
           <TableBody>
@@ -51,7 +55,7 @@ const TableTemplate = ({ buttonHaver: ButtonHaver, columns, rows }) => {
                       );
                     })}
                     <StyledTableCell align="center">
-                      <ButtonHaver row={row} />
+                      {ButtonHaver && <ButtonHaver row={row} />}
                     </StyledTableCell>
                   </StyledTableRow>
                 );

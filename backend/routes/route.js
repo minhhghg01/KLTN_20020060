@@ -27,6 +27,7 @@ const { teacherRegister, teacherLogIn, getTeachers, getTeacherDetail, deleteTeac
 
 const {questionCreate, questionUpdate} = require('../controllers/question-controller.js');
 const { testCreate } = require('../controllers/test-controller.js');
+const { historyCreate, historyList } = require('../controllers/history-controller.js');
 
 // login
 router.post('/login', login);
@@ -94,7 +95,6 @@ router.put("/Notice/:id", updateNotice)
 // Complain
 
 router.post('/ComplainCreate', complainCreate);
-
 router.get('/ComplainList/:id', complainList);
 
 // Sclass
@@ -126,5 +126,9 @@ router.delete("/SubjectsClass/:id", deleteSubjectsByClass)
 router.post('/questionCreate', questionCreate);
 router.get('/testCreate/:id', testCreate)
 router.put('/questionUpdate', questionUpdate);
+
+// history
+router.post('/historyCreate', historyCreate);
+router.get('/historyList/:id', historyList);
 
 module.exports = router;

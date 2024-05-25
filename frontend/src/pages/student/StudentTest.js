@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getSubjectList } from "../../redux/sclassRelated/sclassHandle";
 import { getUserDetails } from "../../redux/userRelated/userHandle";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { BlueButton } from "../../components/buttonStyles";
+import { BlueButton, LightPurpleButton } from "../../components/buttonStyles";
 
 export default function StudentTest() {
   const { subjectsList, loading, error, response } = useSelector(
@@ -23,6 +23,7 @@ export default function StudentTest() {
   const timerRef = useRef(null);
   const dispatch = useDispatch();
   const [subjects, setSubject] = useState([]);
+  const [history, setHistory] = useState([]);
 
   useEffect(() => {
     dispatch(getUserDetails(currentUser._id, "Student"));
@@ -76,6 +77,13 @@ export default function StudentTest() {
     startTimer();
   };
 
+  const loadHistory = async (subject) => {
+    const result = await axios.get(
+      `${process.env.REACT_APP_BASE_URL}/historyList/${subject}`
+    );
+    setHistory(result.data.history);
+  };
+
   const handleSubmit = async () => {
     clearInterval(timerRef.current); // Dừng đếm ngược khi nộp bài
     let mark = 0;
@@ -87,6 +95,14 @@ export default function StudentTest() {
     }
     console.log(mark);
     setScore(mark);
+    const history = {
+      student: currentUser._id,
+      subject: test[0].subject,
+      score: mark * 10,
+      timeRemaining: timeLeft,
+    };
+    console.log("Subject: ", test[0].subject);
+    await createHistory(history);
   };
 
   const loadTest = async (subject) => {
@@ -120,8 +136,22 @@ export default function StudentTest() {
     }${secs}`;
   };
 
+  const createHistory = async (history) => {
+    const result = await axios.post(
+      `${process.env.REACT_APP_BASE_URL}/historyCreate`,
+      history
+    );
+    console.log(result);
+  };
+
   const subjectColumns = [
     { id: "subName", label: "Tên môn học", minWidth: 170 },
+  ];
+
+  const rankColumns = [
+    { id: "name", label: "Tên học sinh", minWidth: 170 },
+    { id: "score", label: "Điểm", minWidth: 100 },
+    { id: "timeRemaining", label: "Thời gian làm bài", minWidth: 100 },
   ];
 
   const subjectRows = subjects.map((subject) => {
@@ -131,6 +161,15 @@ export default function StudentTest() {
       sclassName: subject.sclassName.sclassName,
       sclassID: subject.sclassName._id,
       id: subject._id,
+    };
+  });
+
+  const rankRows = history.map((history) => {
+    return {
+      name: history.student.name,
+      score: history.score,
+      timeRemaining: history.timeRemaining,
+      id: history._id,
     };
   });
 
@@ -146,6 +185,16 @@ export default function StudentTest() {
         >
           Làm bài kiểm tra
         </BlueButton>
+        <LightPurpleButton
+          variant="contained"
+          onClick={() => {
+            console.log(row);
+            loadHistory(row.id);
+            setBegin("ranking");
+          }}
+        >
+          Xếp hạng
+        </LightPurpleButton>
       </>
     );
   };
@@ -223,6 +272,13 @@ export default function StudentTest() {
             Làm lại
           </p>
         </div>
+      )}
+      {begin === "ranking" && (
+        <Paper sx={{ width: "100%", overflow: "hidden" }}>
+          {Array.isArray(history) && (
+            <TableTemplate columns={rankColumns} rows={rankRows} />
+          )}
+        </Paper>
       )}
     </>
   );
