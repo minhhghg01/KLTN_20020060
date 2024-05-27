@@ -168,7 +168,7 @@ export default function StudentTest() {
     return {
       name: history.student.name,
       score: history.score,
-      timeRemaining: `${history.timeRemaining} giây`,
+      timeRemaining: `${Math.floor((300 - history.timeRemaining)/60)} phút ${(300 - history.timeRemaining)%60} giây`,
       id: history._id,
     };
   });

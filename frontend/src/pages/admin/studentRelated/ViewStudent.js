@@ -153,7 +153,7 @@ const ViewStudent = () => {
                             <StyledTableRow>
                                 <StyledTableCell>Môn học</StyledTableCell>
                                 <StyledTableCell>Có mặt</StyledTableCell>
-                                <StyledTableCell>Tổng học kỳ</StyledTableCell>
+                                <StyledTableCell>Tổng buổi học</StyledTableCell>
                                 <StyledTableCell>Tỷ lệ tham dự</StyledTableCell>
                                 <StyledTableCell align="center">Hành động</StyledTableCell>
                             </StyledTableRow>
@@ -172,13 +172,13 @@ const ViewStudent = () => {
                                                 onClick={() => handleOpen(subId)}>
                                                 {openStates[subId] ? <KeyboardArrowUp /> : <KeyboardArrowDown />}Chi tiết
                                             </Button>
-                                            <IconButton onClick={() => removeSubAttendance(subId)}>
+                                            {/* <IconButton onClick={() => removeSubAttendance(subId)}>
                                                 <DeleteIcon color="error" />
-                                            </IconButton>
-                                            <Button variant="contained" sx={styles.attendanceButton}
+                                            </IconButton> */}
+                                            {/* <Button variant="contained" sx={styles.attendanceButton}
                                                 onClick={() => navigate(`/Admin/subject/student/attendance/${studentID}/${subId}`)}>
                                                 Thay đổi
-                                            </Button>
+                                            </Button> */}
                                         </StyledTableCell>
                                     </StyledTableRow>
                                     <StyledTableRow>
@@ -222,10 +222,10 @@ const ViewStudent = () => {
                     <div>
                         Tỷ lệ đi học: {overallAttendancePercentage.toFixed(2)}%
                     </div>
-                    <Button variant="contained" color="error" startIcon={<DeleteIcon />} onClick={() => removeHandler(studentID, "RemoveStudentAtten")}>Xóa tất cả</Button>
-                    <Button variant="contained" sx={styles.styledButton} onClick={() => navigate("/Admin/students/student/attendance/" + studentID)}>
+                    {/* <Button variant="contained" color="error" startIcon={<DeleteIcon />} onClick={() => removeHandler(studentID, "RemoveStudentAtten")}>Xóa tất cả</Button> */}
+                    {/* <Button variant="contained" sx={styles.styledButton} onClick={() => navigate("/Admin/students/student/attendance/" + studentID)}>
                         Điểm danh
-                    </Button>
+                    </Button> */}
                 </>
             )
         }
@@ -294,9 +294,9 @@ const ViewStudent = () => {
                             })}
                         </TableBody>
                     </Table>
-                    <Button variant="contained" sx={styles.styledButton} onClick={() => navigate("/Admin/students/student/marks/" + studentID)}>
+                    {/* <Button variant="contained" sx={styles.styledButton} onClick={() => navigate("/Admin/students/student/marks/" + studentID)}>
                         Thêm điểm
-                    </Button>
+                    </Button> */}
                 </>
             )
         }
@@ -352,8 +352,11 @@ const ViewStudent = () => {
                 {
                     subjectAttendance && Array.isArray(subjectAttendance) && subjectAttendance.length > 0 && (
                         <CustomPieChart data={chartData} />
+                        
                     )
                 }
+                <p className="text-center">Điểm danh</p>
+                
                 <Button variant="contained" sx={styles.styledButton} onClick={deleteHandler}>
                     Xóa
                 </Button>

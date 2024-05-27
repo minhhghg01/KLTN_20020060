@@ -181,14 +181,14 @@ const ClassDetails = () => {
         >
           Xem
         </BlueButton>
-        <PurpleButton
+        {/* <PurpleButton
           variant="contained"
           onClick={() =>
             navigate("/Admin/students/student/attendance/" + row.id)
           }
         >
           Điểm danh
-        </PurpleButton>
+        </PurpleButton> */}
       </>
     );
   };

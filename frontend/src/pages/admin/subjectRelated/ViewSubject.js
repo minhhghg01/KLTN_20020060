@@ -64,14 +64,14 @@ const ViewSubject = () => {
         >
           Xem
         </BlueButton>
-        <PurpleButton
+        {/* <PurpleButton
           variant="contained"
           onClick={() =>
             navigate(`/Admin/subject/student/attendance/${row.id}/${subjectID}`)
           }
         >
           Điểm danh
-        </PurpleButton>
+        </PurpleButton> */}
       </>
     );
   };
@@ -85,10 +85,10 @@ const ViewSubject = () => {
         >
           Xem
         </BlueButton>
-        <PurpleButton variant="contained"
+        {/* <PurpleButton variant="contained"
           onClick={() => navigate(`/Admin/subject/student/marks/${row.id}/${subjectID}`)}>
           Cho điểm
-        </PurpleButton>
+        </PurpleButton> */}
       </>
     );
   };
@@ -189,7 +189,7 @@ const ViewSubject = () => {
               <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                 <TabList onChange={handleChange} sx={{ position: 'fixed', width: '100%', bgcolor: 'background.paper', zIndex: 1 }}>
                   <Tab label="Thông tin" value="1" />
-                  <Tab label="Học sinh" value="2" />
+                  <Tab label="Học viên" value="2" />
                 </TabList>
               </Box>
               <Container sx={{ marginTop: "3rem", marginBottom: "4rem" }}>

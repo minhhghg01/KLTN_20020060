@@ -82,7 +82,7 @@ const SeeComplains = () => {
         <>
           <div className="p-4">
             <h1 className="text-2xl font-bold text-gray-900 mb-4">
-              Conversations
+              Góp ý
             </h1>
             <ul className="divide-y divide-gray-200">
               {complainsList.map((complaint, index) => {
